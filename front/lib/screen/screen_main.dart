@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/screen/screen_map.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -22,7 +23,19 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('공백'),
+              Container(
+                  child: Center(
+                      child: ButtonTheme(
+                          child: RaisedButton(
+                              child: Text('맵으로',
+                                  style: TextStyle(color: Colors.white)),
+                              color: Colors.deepPurple,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapScreen()));
+                              }))))
             ]),
       ),
     );
