@@ -41,7 +41,4 @@ class _MapScreenState extends State<MapScreen> {
 
   }
 
-  void _loadHtmlFromAssets() async {
-//    _webViewController.loadUrl('http://a63cb8a3c6fb.ngrok.io/map');
-  }
 }
