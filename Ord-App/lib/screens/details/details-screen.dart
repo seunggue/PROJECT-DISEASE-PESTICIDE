@@ -9,6 +9,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: detailsAppBar(),
+      resizeToAvoidBottomInset : false,
       body: Body(),
     );
   }

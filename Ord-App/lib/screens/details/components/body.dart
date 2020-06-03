@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/constants.dart';
 import 'package:food_app/screens/details/components/item_image.dart';
-import 'package:food_app/screens/details/components/order_button.dart';
 import 'package:food_app/screens/details/components/title_price_rating.dart';
 
 class Body extends StatelessWidget {
@@ -54,14 +53,44 @@ class ItemInfo extends StatelessWidget {
               height: 1.5,
             ),
           ),
-          SizedBox(height: size.height * 0.1),
+          SizedBox(height: size.height * 0.07),
           // Free space  10% of total height
-          OrderButton(
-            size: size,
-            press: () {},
-          )
-        ],
+          Expanded(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Center(child: Text('모스피란', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
+                onTap: () => _showDialog(context, '모스피란을 준비하세요'),
+              ),
+              ListTile(
+              title: Center(child: Text('베노밀', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
+              onTap: () => _showDialog(context, '베노밀을 준비하세요'),
+              ),
+              ListTile(
+                title: Center(child: Text('에이팜', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
+                onTap: () => _showDialog(context, '에이팜을 준비하세요'),
+              ),
+            ],
+          ),
+          )],
       ),
+    );
+  }
+
+  void _showDialog(BuildContext context, String text) {
+    // 경고창을 보여주는 가장 흔한 방법.
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: Text('선택 완료!'),
+            content: Text('$text 항목을 선택했습니다.'),
+            // 주석으로 막아놓은 actions 매개변수도 확인해 볼 것.
+            // actions: <Widget>[
+            //     FlatButton(child: Text('확인'), onPressed: () => Navigator.pop(context)),
+            // ],
+          );
+        }
     );
   }
 
