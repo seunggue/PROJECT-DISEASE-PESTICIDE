@@ -3,17 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:http/http.dart';
+import 'package:front/bloc/crop_pest_bloc.dart';
+import 'package:front/model/pest_model.dart';
+import 'package:front/screen/screen_data.dart';
+import 'package:front/screen/screen_webview.dart';
 
 class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   WebviewScaffold webview = WebviewScaffold(
-    url: 'http://7e97851564ca.ngrok.io/map',
+    url: 'http://362f8599d26c.ngrok.io/map',
     geolocationEnabled: true,
 //    withZoom: true,
     useWideViewPort: true,
@@ -21,20 +23,51 @@ class _MapScreenState extends State<MapScreen> {
     withOverviewMode: true,
     resizeToAvoidBottomInset: true,
   );
-  final flutterWebviewPlugin = new FlutterWebviewPlugin();
-  flutterWebviewPlugin.onStateChanged.listen((viewState) async {
-    if (viewState.type == WebViewState.finish)
-})
+
+  FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
+  final cropPestBloc = CropPestBloc();
+
   @override
   Widget build(BuildContext context) {
-//    Size screenSize = MediaQuery.of(context).size;
-//    double width = screenSize.width;
-//    double height = screenSize.height;
     return SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-              title: Text('맵 뷰'),
-            ),
-            body: webview));
+      appBar: AppBar(
+        // appBar 밑에 탭이 붙기 누에 bottom에 TabBar 위젯을 추가해서 사용
+        title: Text('병해충 예측 지도'),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+//            child: StreamBuilder<Pest>(
+////              stream: cropPestBloc.cropPestResult$,
+////              builder: (context, snapshot) {
+////                if (snapshot.hasData) {
+////                  return RaisedButton.icon(
+////                      onPressed: () {
+////                        var data = snapshot.data;
+//////                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
+////                      },
+////                      color: Colors.green,
+////                      icon: const Icon(Icons.assignment),
+////                      label: Text('상세 정보'));
+////                }
+////                else{
+////                  return CircularProgressIndicator();
+////                }
+////              }
+////            ),
+              child: RaisedButton.icon(
+                  onPressed: () {
+//                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
+                  },
+                  color: Colors.green,
+                  icon: const Icon(Icons.assignment),
+                  label: Text('상세 정보'))) //
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: webview,
+      ),
+    ));
   }
 }
