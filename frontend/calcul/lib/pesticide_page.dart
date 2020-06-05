@@ -1,91 +1,161 @@
-import 'package:calcul/top_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:dio/dio.dart';
 
 class PesticidePage extends StatefulWidget {
+  @override
   _PesticidePageState createState() => _PesticidePageState();
 }
 
 class _PesticidePageState extends State<PesticidePage> {
+//  final TextEditingController _filter = TextEditingController();
+//  FocusNode focusNode = FocusNode();
+  List countries = [];
+  List filteredCountries = [];
+  bool isSearching = false;
+
+  getCountries() async {
+    var response = await Dio().get('https://restcountries.eu/rest/v2/all');
+    return response.data;
+  }
+
+  @override
+  void initState() {
+    getCountries().then((data) {
+      setState(() {
+        countries = filteredCountries = data;
+      });
+    });
+    super.initState();
+  }
+
+  void _filterCountries(value) {
+    setState(() {
+      filteredCountries = countries
+          .where((country) =>
+          country['name'].toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       gestures: [GestureType.onTap, GestureType.onPanUpdateDownDirection],
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          elevation: 0.0,
-          title: Text('농약'),
-        ),
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              Text(
-                'Pesticide',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.lightGreen[200],
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-//                        labelText: '검색',
-//                        labelStyle: TextStyle(),
-                        hintText: '농약 검색',
-                        focusedBorder: OutlineInputBorder(
-//                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25.0))),
-                        enabledBorder: UnderlineInputBorder(
-//                          borderSide: BorderSide(color: Colors.white),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25.0)))),
-                  ),
-                ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.4),
-              Container(
-                child: Center(
-                  child: FlatButton(
-                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0)),
+      child: SafeArea(
+        minimum: EdgeInsets.only(top: 50.0),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: !isSearching
+                ? Text('주요 농약')
+                : TextField(
+              onChanged: (value) {
+                _filterCountries(value);
+              },
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.search,
                     color: Colors.white,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return Mydialog();
-                          });
-                      print('눌림');
-                    },
-                    child: Text(
-                      '농약 계산기',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
+                  ),
+                  hintText: "이름을 입력해주세요",
+                  hintStyle: TextStyle(color: Colors.white)),
+            ),
+            actions: <Widget>[
+              isSearching
+                  ? IconButton(
+                icon: Icon(Icons.cancel),
+                onPressed: () {
+                  setState(() {
+                    this.isSearching = false;
+                    filteredCountries = countries;
+                  });
+                },
+              )
+                  : IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  setState(() {
+                    this.isSearching = true;
+                  });
+                },
+              )
+            ],
+          ),
+          resizeToAvoidBottomInset: false,
+          body: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      padding: EdgeInsets.all(10),
+                      child: filteredCountries.length > 0
+                          ? ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: filteredCountries.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/farm',
+                                    arguments: filteredCountries[index]);
+                              },
+                              child: Card(
+                                elevation: 10,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 8),
+                                  child: Text(
+                                    filteredCountries[index]['name'],
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                            );
+                          })
+                          : Center(
+                        child: CircularProgressIndicator(),
                       ),
                     ),
                   ),
                 ),
-              )
-            ],
+
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                Container(
+                  child: Center(
+                    child: FlatButton(
+                      padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0)),
+                      color: Colors.white,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (_) {
+                              return Mydialog();
+                            });
+                      },
+                      child: Text(
+                        '농약 계산기',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
+          backgroundColor: Colors.black,
         ),
-        endDrawer: MyDrawer(),
-        backgroundColor: Colors.black,
       ),
     );
   }
@@ -144,7 +214,3 @@ class _MydialogState extends State<Mydialog> {
     );
   }
 }
-
-//100g에 10배면 1리터
-//10g에 100배면 1리터
-//5g에 200배면 1리터

@@ -36,6 +36,8 @@ dependencies:
   html_unescape: ^1.0.1+3
   rxdart: ^0.24.1
   http:
+  dio: ^3.0.9
+
 
 dev_dependencies:
   flutter_test:

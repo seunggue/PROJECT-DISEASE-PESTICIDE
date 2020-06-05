@@ -6,6 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 class FarmPage extends StatefulWidget {
+
+//  static const routName = '/farm';
   @override
   _FarmPageState createState() => _FarmPageState();
 }
@@ -14,6 +16,8 @@ class _FarmPageState extends State<FarmPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Map country = ModalRoute.of(context).settings.arguments;
+
     return KeyboardDismisser(
       gestures: [GestureType.onTap, GestureType.onPanUpdateDownDirection],
       child: Scaffold(
@@ -68,7 +72,7 @@ class _FarmPageState extends State<FarmPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "농약이름",
+                          country['name'],
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 22.0,
@@ -111,7 +115,7 @@ class _FarmPageState extends State<FarmPage> {
                             child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: <Widget>[
-                                _buildInfoCard('용도', '살충제'),
+                                _buildInfoCard('용도', country['population'].toString()),
                                 SizedBox(width: 10.0),
                                 _buildInfoCard('안전사용기준', '3회 이내'),
                                 SizedBox(width: 10.0),
@@ -148,10 +152,10 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                            child: Image.asset('images/korealogo.png',
-                                                fit: BoxFit.cover,
-                                                color: Colors.black.withOpacity(0.3)),
-                                          ),
+                                        child: Image.asset('images/korealogo.png',
+                                            fit: BoxFit.cover,
+                                            color: Colors.black.withOpacity(0.3)),
+                                      ),
                                     )
                                   ],
                                 ),
@@ -224,10 +228,10 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                            child: Image.asset('images/korealogo.png',
-                                                fit: BoxFit.cover,
-                                                color: Colors.black.withOpacity(0.3)),
-                                          ),
+                                        child: Image.asset('images/korealogo.png',
+                                            fit: BoxFit.cover,
+                                            color: Colors.black.withOpacity(0.3)),
+                                      ),
                                     )
                                   ],
                                 ),
