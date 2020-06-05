@@ -29,7 +29,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text('home'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/');
+                Navigator.pushNamed(context, '/');
               },
             ),ListTile(
               leading: Icon(
@@ -38,7 +38,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text('지도'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/bug_map');
+                Navigator.pushNamed(context, '/bug_map');
               },
             ),
             ListTile(
@@ -49,7 +49,7 @@ class MyDrawer extends StatelessWidget {
               title: Text('농약'),
               onTap: () {
 //                print('asdf');
-                Navigator.pushReplacementNamed(context, '/pesticidepage');
+                Navigator.pushNamed(context, '/pesticidepage');
               },
             ),
             ListTile(
