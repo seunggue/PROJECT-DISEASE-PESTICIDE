@@ -1,3 +1,4 @@
+import 'package:calcul/pest_detail.dart';
 import 'package:calcul/top_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
@@ -32,7 +33,6 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-<<<<<<< HEAD
           appBar: AppBar(
             // appBar 밑에 탭이 붙기 누에 bottom에 TabBar 위젯을 추가해서 사용
             title: Text('병해충 예측 지도'),
@@ -66,29 +66,5 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           ),
           endDrawer: MyDrawer(),
         ));
-=======
-      appBar: AppBar(
-        // appBar 밑에 탭이 붙기 누에 bottom에 TabBar 위젯을 추가해서 사용
-        title: Text('병해충 예측 지도'),
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RaisedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Catalog()));
-                  },
-                  color: Colors.green,
-                  icon: const Icon(Icons.assignment),
-                  label: Text('상세 정보'))) //
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: webview,
-      ),
-      endDrawer: MyDrawer(),
-    ));
->>>>>>> 5d38921a29c46b3c9d5642e74f5fb1e6f9efc9ec
   }
 }
