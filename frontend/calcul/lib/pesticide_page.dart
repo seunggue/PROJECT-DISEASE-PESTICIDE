@@ -50,7 +50,7 @@ class _PesticidePageState extends State<PesticidePage> {
             backgroundColor: Colors.lightGreen[200],
             elevation: 0.0,
             title: !isSearching
-                ? Text('농약')
+                ? Text('검색')
                 : TextField(
               onChanged: (value) {
                 _filterCountries(value);
