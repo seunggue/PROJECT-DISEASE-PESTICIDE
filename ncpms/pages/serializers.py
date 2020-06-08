@@ -15,7 +15,7 @@ class NongsaroSerializer(serializers.ModelSerializer):
 class PestidataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pestidata
-        fields = ('pesti_name','dis_name','pestiuse', 'pesti_img', 'toxic_name', 'dilutunit', 'usesuit_time', 'use_num')
+        fields = ('pesti_name','pesti_name2','dis_name','pestiuse', 'pesti_img', 'toxic_name', 'dilutunit', 'usesuit_time', 'use_num')
 
 class SickdataSerializer(serializers.ModelSerializer):
     pesti_datas = PestidataSerializer(read_only=True, many=True)

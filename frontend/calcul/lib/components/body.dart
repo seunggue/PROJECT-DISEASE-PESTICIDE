@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:calcul/components/search_box.dart';
-import 'package:calcul/screens/home/components/category_list.dart';
-import 'package:calcul/screens/home/components/discount_card.dart';
-import 'package:calcul/screens/home/components/item_list.dart';
+import 'package:calcul/components/category_list.dart';
+import 'package:calcul/components/discount_card.dart';
+import 'package:calcul/components/item_list.dart';
 
 class Body extends StatelessWidget {
   @override

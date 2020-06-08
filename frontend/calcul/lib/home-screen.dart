@@ -1,8 +1,8 @@
 import 'package:calcul/top_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:calcul/components/bottom_nav_bar.dart';
-import 'package:calcul/screens/home/components/app_bar.dart';
-import 'package:calcul/screens/home/components/body.dart';
+import 'package:calcul/components/app_bar.dart';
+import 'package:calcul/components/body.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
