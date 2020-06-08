@@ -44,12 +44,13 @@ class _PesticidePageState extends State<PesticidePage> {
     return KeyboardDismisser(
       gestures: [GestureType.onTap, GestureType.onPanUpdateDownDirection],
       child: SafeArea(
-        minimum: EdgeInsets.only(top: 50.0),
+//        minimum: EdgeInsets.only(top: 50.0),
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.lightGreen[200],
+            elevation: 0.0,
             title: !isSearching
-                ? Text('주요 농약')
+                ? Text('농약')
                 : TextField(
               onChanged: (value) {
                 _filterCountries(value);
@@ -61,6 +62,7 @@ class _PesticidePageState extends State<PesticidePage> {
                     color: Colors.white,
                   ),
                   hintText: "이름을 입력해주세요",
+
                   hintStyle: TextStyle(color: Colors.white)),
             ),
             actions: <Widget>[
@@ -154,7 +156,7 @@ class _PesticidePageState extends State<PesticidePage> {
               ],
             ),
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.lightGreen[200],
         ),
       ),
     );
