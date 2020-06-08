@@ -336,7 +336,7 @@ Widget _buildInfoCard(String cardTitle, String info) {
                       Text(info,
                           style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontSize: 14.0,
+                              fontSize: 12.0,
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                     ],

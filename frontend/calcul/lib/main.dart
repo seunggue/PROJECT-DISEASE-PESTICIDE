@@ -24,7 +24,7 @@ class ControlleApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/farm': (context) => FarmPage(),
-        '/bug_map': (context) => BugPage(),
+        '/bug_map': (context) => MapScreen(),
         '/pesticide_page': (context) => PesticidePage(),
         '/screens/home/home-screen': (context) => HomeScreen(),
       },

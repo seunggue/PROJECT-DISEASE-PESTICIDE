@@ -37,6 +37,11 @@ dependencies:
   rxdart: ^0.24.1
   http:
   dio: ^3.0.9
+  flutter_svg: ^0.17.4
+  smooth_star_rating: ^1.0.4
+  animated_text_kit: ^2.2.0
+
+
 
 
 dev_dependencies:
@@ -55,9 +60,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/korealogo.png
-    - images/koreamap.png
     - images/bugmap.png
-    - images/agg.png
     - images/bugg.png
     - images/virus.png
     - images/farmer.png
