@@ -10,7 +10,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   WebviewScaffold webview = WebviewScaffold(
-    url: 'http://362f8599d26c.ngrok.io/map',
+    url: ' http://k02c1021.p.ssafy.io/pages/map',
     geolocationEnabled: true,
 //    withZoom: true,
     useWideViewPort: true,
@@ -32,27 +32,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             actions: <Widget>[
               Padding(
                   padding: const EdgeInsets.all(8.0),
-//            child: StreamBuilder<Pest>(
-////              stream: cropPestBloc.cropPestResult$,
-////              builder: (context, snapshot) {
-////                if (snapshot.hasData) {
-////                  return RaisedButton.icon(
-////                      onPressed: () {
-////                        var data = snapshot.data;
-//////                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
-////                      },
-////                      color: Colors.green,
-////                      icon: const Icon(Icons.assignment),
-////                      label: Text('상세 정보'));
-////                }
-////                else{
-////                  return CircularProgressIndicator();
-////                }
-////              }
-////            ),
                   child: RaisedButton.icon(
                       onPressed: () {
-//                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
                       },
                       color: Colors.green,
                       icon: const Icon(Icons.assignment),

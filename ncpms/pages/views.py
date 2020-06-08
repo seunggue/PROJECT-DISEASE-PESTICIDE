@@ -59,6 +59,18 @@ def datas4(request):
     serializer = PestidataSerializer(pestidata, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def sicksearch(request, crop, sick):
+    sickdata = get_object_or_404(Sickdata, sick_name=sick, crop_name=crop)
+    serializer = SickdataSerializer(sickdata)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def searchtest(request):
+    sickdata = get_object_or_404(Sickdata, sick_name='탄저병', crop_name='사과')
+    serializer = SickdataSerializer(sickdata)
+    return Response(serializer.data)
+
 # 검색
 @api_view(['POST'])
 def search(request):
@@ -155,7 +167,7 @@ def newdata2(request):
     #             '곰취',
     #             '석류']
 
-    crop_list = ['사과']
+    crop_list = ['사과','고추']
     for crop_name in crop_list:
         print(crop_name)
         # 1. 작물명과 병명 가져와서(ex.작물명:양파, 병명:노균병) sickKey를 추출
@@ -180,7 +192,6 @@ def newdata2(request):
                 soup = BeautifulSoup(res.content, 'html.parser')
                 prevent_method = soup.find('preventionmethod').get_text()
   
-
                 sick_symptoms = soup.find('symptoms').get_text()
                 sick_condition = soup.find('developmentcondition').get_text()
 
@@ -290,7 +301,7 @@ def newdata2(request):
                 print(detail_url)
                 res = requests.get(detail_url)
                 soup = BeautifulSoup(res.content, 'html.parser')
-                print(soup)
+
                 prevent_method = soup.find('preventmethod').get_text()
                 sick_symptoms = soup.find('damageinfo').get_text()
                 sick_condition = soup.find('ecologyinfo').get_text()  
