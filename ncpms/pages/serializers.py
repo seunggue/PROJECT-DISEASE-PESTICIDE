@@ -26,5 +26,5 @@ class SickdataSerializer(serializers.ModelSerializer):
 class SicklistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sickdata
-        fields = ('crop_name','sick_kind','sick_name','sick_img','prevent_method')
+        fields = ('crop_name','sick_kind','sick_name','sick_img','prevent_method',)
 
