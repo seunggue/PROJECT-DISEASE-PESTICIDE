@@ -6,7 +6,6 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
 
-
 class CropPestBloc{
 
   final _cropPestSubject = BehaviorSubject<Pest>();
@@ -36,7 +35,7 @@ class CropPestBloc{
 //    });
     var crop = cropPest['crop'];
     var pest = cropPest['pest'];
-    var response = await http.get('api 주소/$crop/$pest/');
+    var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
     if (response.statusCode == 200){
       Pest pest = Pest.fromJson(json.decode(response.body));
       return pest;

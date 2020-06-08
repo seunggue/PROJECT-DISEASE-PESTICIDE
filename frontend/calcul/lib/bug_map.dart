@@ -2,6 +2,11 @@ import 'package:calcul/top_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:calcul/bloc/crop_pest_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart';
+import 'package:html_unescape/html_unescape.dart';
+import 'package:calcul/model/pest_model.dart';
+import 'dart:convert';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -19,6 +24,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     resizeToAvoidBottomInset: true,
   );
 
+  final unescape =new HtmlUnescape();
   FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
   final cropPestBloc = CropPestBloc();
 
@@ -33,8 +39,20 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton.icon(
-                      onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Catalog()));
+                      onPressed: () async {
+                        String doc = await flutterWebviewPlugin.evalJavascript('document.documentElement.innerHTML');
+                        doc = unescape.convert(doc);
+                        doc = doc.replaceAll('\\u003C', '<').replaceAll('\\"', '"').replaceAll('\\n', '\n');
+                        var dom = parse(doc);
+                        var cropPest = dom.getElementById('cropPest').innerHtml;
+                        var arr = cropPest.split(',');
+                        var crop = arr[0];
+                        var pest = arr[1];
+                        var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
+                        if (response.statusCode == 200){
+                          Pest pest = Pest.fromJson(json.decode(response.body));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pest_Detail(pest)));
+                        }
                       },
                       color: Colors.green,
                       icon: const Icon(Icons.assignment),
