@@ -5,7 +5,7 @@ import 'package:calcul/pesticide_page.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-
+import 'package:calcul/home-screen.dart';
 
 void main() {
   runApp(new ControlleApp());
@@ -24,8 +24,9 @@ class ControlleApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/farm': (context) => FarmPage(),
-        '/bug_map': (context) => MapScreen(),
-        '/pesticidepage': (context) => PesticidePage()
+        '/bug_map': (context) => BugPage(),
+        '/pesticide_page': (context) => PesticidePage(),
+        '/screens/home/home-screen': (context) => HomeScreen(),
       },
     );
   }
@@ -119,8 +120,8 @@ class _HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
 
 List<MenuButton> menuButtons = [
   MenuButton("images/bugmap.png", "지도", "/bug_map"),
-  MenuButton("images/virus.png", "병해충", "/"),
-  MenuButton("images/bugg.png", "농약", "/pesticidepage")
+  MenuButton("images/virus.png", "병해충", "/screens/home/home-screen"),
+  MenuButton("images/bugg.png", "농약", "/pesticide_page")
 ];
 
 class MenuButton extends StatelessWidget {
