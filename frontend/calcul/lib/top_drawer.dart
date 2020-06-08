@@ -48,8 +48,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text('농약'),
               onTap: () {
-//                print('asdf');
-                Navigator.pushNamed(context, '/pesticidepage');
+                Navigator.pushNamed(context, '/pesticide_page');
               },
             ),
             ListTile(
@@ -59,7 +58,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text('병해충'),
               onTap: () {
-                print('병해충');
+                Navigator.pushNamed(context, '/screens/home/home-screen');
               },
             ),
           ],
