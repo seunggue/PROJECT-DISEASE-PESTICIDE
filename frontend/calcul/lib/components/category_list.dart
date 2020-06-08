@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:calcul/screens/home/components/category_item.dart';
+import 'package:calcul/components/category_item.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({

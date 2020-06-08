@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calcul/screens/details/details-screen.dart';
-import 'package:calcul/screens/home/components/item_card.dart';
+import 'package:calcul/components/item_card.dart';
 
 class ItemList extends StatelessWidget {
   const ItemList({
