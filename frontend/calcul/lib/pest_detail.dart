@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:calcul/constants.dart';
 import 'package:calcul/screens/details/components/item_image.dart';
 import 'package:calcul/screens/details/components/title_price_rating.dart';
+import 'dart:convert';
 
 class Pest_Detail extends StatelessWidget {
   Pest pest;
@@ -18,7 +19,7 @@ class Pest_Detail extends StatelessWidget {
         Expanded(
           child: ItemInfo(pest),
         ),
-      ],
+      ]
     );
   }
 }
@@ -28,7 +29,6 @@ class ItemInfo extends StatelessWidget {
   Pest pest;
 
   ItemInfo(this.pest);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,14 +52,14 @@ class ItemInfo extends StatelessWidget {
             price: 10,
             onRatingChanged: (value) {},
           ),
-          Text(
-            pest.preventMethod,
-            style: TextStyle(
-              height: 1.5,
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Text(
+                pest.preventMethod.replaceAll('<br/>', ''),
+              ),
             ),
           ),
-          SizedBox(height: size.height * 0.07),
-          // Free space  10% of total height
           Expanded(
           child: ListView(
             children: <Widget>[

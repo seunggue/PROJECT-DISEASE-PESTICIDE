@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:calcul/pest-details-screen.dart';
 import 'package:calcul/pest_detail.dart';
 import 'package:calcul/top_drawer.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +31,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   final unescape =new HtmlUnescape();
   FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
   final cropPestBloc = CropPestBloc();
-
+  var buttonColor = Colors.green;
+  var buttonText = "상세 정보";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,20 +51,33 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         var dom = parse(doc);
                         var cropPest = dom.getElementById('cropPest').innerHtml;
                         var arr = cropPest.split(',');
-                        print(arr);
+                        if (arr.length==1) {
+                          arr = cropPest.split('의 ');
+                        }
                         var crop = arr[0];
                         var pest = arr[1];
-//                        var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
-//                        print(response.statusCode);
-//                        if (response.statusCode == 200){
-//                          Pest pest = Pest.fromJson(json.decode(response.body));
-//                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pest_Detail(pest)));
-//                        }
-//                        print("asdfasdf@@@@@@@@@@@@@@@@");
+                        var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
+                        print('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
+                        if (response.statusCode == 200){
+                          Pest pest = Pest.fromJson(json.decode(utf8.decode(response.bodyBytes)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PestDetailScreen(pest)));
+                          flutterWebviewPlugin.close();
+                          print("asdffd");
+                        }
+                        else {
+                          print("sdf");
+                          buttonColor = Colors.red;
+                          buttonText = "정보 없음!";
+                          var _time = Timer(Duration(seconds: 2), ()=> (){{
+                            buttonColor = Colors.green;
+                            buttonText = "상세 정보";
+                          }
+                          });
+                        }
                       },
-                      color: Colors.green,
+                      color: this.buttonColor,
                       icon: const Icon(Icons.assignment),
-                      label: Text('상세 정보'))) //
+                      label: Text(this.buttonText))) //
             ],
           ),
           body: Padding(
