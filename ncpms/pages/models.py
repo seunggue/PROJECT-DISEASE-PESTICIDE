@@ -15,6 +15,7 @@ class Nongsaro(models.Model):
 
 class Pestidata(models.Model):
     pesti_name = models.CharField(max_length=100)
+    pesti_name2 = models.CharField(max_length=100)
     dis_name = models.CharField(max_length=100)
     pestiuse = models.CharField(max_length=100)
     pesti_img = models.CharField(max_length=100)

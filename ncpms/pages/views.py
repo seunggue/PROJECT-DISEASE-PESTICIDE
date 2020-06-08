@@ -17,7 +17,13 @@ def index(request):
 
     return render(request, 'index.html')
 
+@api_view(['GET'])
 def datas(request):
+    nongsaro = Nongsaro.objects.all()
+    serializer = NongsaroSerializer(nongsaro, many=True)
+    return Response(serializer.data)
+
+def datas_detail_list(request):
     datas = Nongsaro.objects.all()
     context = {
         'datas':datas
@@ -114,7 +120,7 @@ def map2(request):
 # 월간 병해충 정보 입력
 def newdata(request):
     print('newdata@@@@')
-    f = open('test.csv', 'r', encoding='CP949')
+    f = open('month_4.csv', 'r', encoding='CP949')
     rdr = csv.reader(f)
     for line in rdr:
         crop_kind = line[0]
@@ -230,7 +236,8 @@ def newdata2(request):
                         soup = BeautifulSoup(res.content, 'html.parser')
                         data = soup.find('service')
                         pesti_name = data.find('pestikorname').get_text()
-                        pesti_name = f'{pesti_name}({crop_name})'
+                        pesti_name2 = f'{pesti_name}({crop_name}):{sick_name}'
+
                         # print(data.find('usename').get_text())
                         # print(data.find('compname').get_text())
                         # print(data.find('pestibrandname').get_text())
@@ -272,6 +279,7 @@ def newdata2(request):
 
                         pestidata = Pestidata.objects.create(
                             pesti_name = pesti_name,
+                            pesti_name2 = pesti_name2,
                             dis_name = sick_name,
                             pestiuse = pesti_use,
                             pesti_img = pesti_img,
@@ -341,7 +349,7 @@ def newdata2(request):
                         soup = BeautifulSoup(res.content, 'html.parser')
                         data = soup.find('service')
                         pesti_name = data.find('pestikorname').get_text()
-                        pesti_name = f'{pesti_name}({crop_name})'
+                        pesti_name2 = f'{pesti_name}({crop_name}):{sick_name}'
                         # print(data.find('usename').get_text())
                         # print(data.find('compname').get_text())
                         # print(data.find('pestibrandname').get_text())
@@ -381,6 +389,7 @@ def newdata2(request):
 
                         pestidata = Pestidata.objects.create(
                             pesti_name = pesti_name,
+                            pesti_name2 = pesti_name2,
                             dis_name = sick_name,
                             pestiuse = pesti_use,
                             pesti_img = pesti_img,
