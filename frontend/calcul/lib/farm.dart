@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class FarmPage extends StatefulWidget {
-
 //  static const routName = '/farm';
   @override
   _FarmPageState createState() => _FarmPageState();
 }
 
 class _FarmPageState extends State<FarmPage> {
-
   @override
   Widget build(BuildContext context) {
     final Map country = ModalRoute.of(context).settings.arguments;
@@ -56,11 +53,16 @@ class _FarmPageState extends State<FarmPage> {
                     left: (MediaQuery.of(context).size.width / 2) - 100.0,
                     child: Hero(
                       tag: 'imageHero',
-                      child: Image.network(
-                        'http://blogfiles.naver.net/20120525_109/ik7919_1337949806637jpOiX_JPEG/111.jpg',
-                        fit: BoxFit.cover,
-                        height: 200.0,
-                        width: 200.0,
+                      child: GestureDetector(
+                        onTap: () {
+                          launch(country['pesti_img']);
+                        },
+                        child: Image.network(
+                          country['pesti_img'],
+//                        fit: BoxFit.cover,
+                          height: 200.0,
+                          width: 200.0,
+                        ),
                       ),
                     ),
                   ),
@@ -72,7 +74,7 @@ class _FarmPageState extends State<FarmPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          country['name'],
+                          country['pesti_name'],
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 22.0,
@@ -84,55 +86,46 @@ class _FarmPageState extends State<FarmPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text("나방, 노린재, 진딧물을 한번에",
+                            Text(country['dis_name'],
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 15.0,
                                     color: Colors.grey)),
-                            Container(
-                                height: 10.0,
-                                color: Colors.grey[400],
-                                width: 1.0),
-                            Container(
-                              width: 125.0,
-                              height: 30.0,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(17.0),
-                                  color: Color(0xFF7A9BEE)),
-                              child: Center(
-                                child: Text(
-                                  '무슨정보',
-                                  style: TextStyle(
-                                      fontSize: 15.0, color: Colors.white),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         SizedBox(height: 20.0),
                         Container(
-                            height: 80.0,
+                            height: 100.0,
                             child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: <Widget>[
-                                _buildInfoCard('용도', country['population'].toString()),
+                                _buildInfoCard('독성', country['toxic_name']),
                                 SizedBox(width: 10.0),
-                                _buildInfoCard('안전사용기준', '3회 이내'),
+                                _buildInfoCard('희석배수', country['dilutunit']),
                                 SizedBox(width: 10.0),
-                                _buildInfoCard('희석배수', '2,000배	'),
+                                _buildInfoCard('사용적기', country['pestiuse']),
                                 SizedBox(width: 10.0),
-                                _buildInfoCard('주성분', '메타플루미존 ')
+                                _buildInfoCard(
+                                    '안전사용기준(일수)', country['use_num']),
+                                SizedBox(width: 10.0),
+                                _buildInfoCard(
+                                    '안전사용기준(횟수)', country['usesuit_time']),
                               ],
                             )),
-                        SizedBox(height: MediaQuery.of(context).size.height*0.1),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GestureDetector(
-                              onTap: () { launch('http://www.nongsaro.go.kr/portal/ps/psz/psza/contentMain.ps?menuId=PS04352');},
+                              onTap: () {
+                                launch(
+                                    'http://www.nongsaro.go.kr/portal/ps/psz/psza/contentMain.ps?menuId=PS04352');
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(17.0),
                                     border: Border.all(color: Colors.grey),
@@ -152,9 +145,11 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                        child: Image.asset('images/korealogo.png',
+                                        child: Image.asset(
+                                            'images/korealogo.png',
                                             fit: BoxFit.cover,
-                                            color: Colors.black.withOpacity(0.3)),
+                                            color:
+                                                Colors.black.withOpacity(0.3)),
                                       ),
                                     )
                                   ],
@@ -162,14 +157,19 @@ class _FarmPageState extends State<FarmPage> {
                               ),
                             ),
                             Container(
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 color: Colors.grey[400],
                                 width: 1.0),
                             GestureDetector(
-                              onTap: () { launch('http://www.foodsafetykorea.go.kr/residue/main.do');},
+                              onTap: () {
+                                launch(
+                                    'http://www.foodsafetykorea.go.kr/residue/main.do');
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(17.0),
                                     border: Border.all(color: Colors.grey),
@@ -189,9 +189,11 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                        child: Image.asset('images/korealogo.png',
+                                        child: Image.asset(
+                                            'images/korealogo.png',
                                             fit: BoxFit.cover,
-                                            color: Colors.black.withOpacity(0.3)),
+                                            color:
+                                                Colors.black.withOpacity(0.3)),
                                       ),
                                     )
                                   ],
@@ -205,10 +207,14 @@ class _FarmPageState extends State<FarmPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GestureDetector(
-                              onTap: () { launch('http://pes.nongsaro.go.kr/pls/plsMain.ps');},
+                              onTap: () {
+                                launch(
+                                    'http://pes.nongsaro.go.kr/pls/plsMain.ps');
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(17.0),
                                     border: Border.all(color: Colors.grey),
@@ -228,9 +234,11 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                        child: Image.asset('images/korealogo.png',
+                                        child: Image.asset(
+                                            'images/korealogo.png',
                                             fit: BoxFit.cover,
-                                            color: Colors.black.withOpacity(0.3)),
+                                            color:
+                                                Colors.black.withOpacity(0.3)),
                                       ),
                                     )
                                   ],
@@ -238,14 +246,18 @@ class _FarmPageState extends State<FarmPage> {
                               ),
                             ),
                             Container(
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 color: Colors.grey[400],
                                 width: 1.0),
                             GestureDetector(
-                              onTap: () { launch('http://psis.rda.go.kr/psis/index.do');},
+                              onTap: () {
+                                launch('http://psis.rda.go.kr/psis/index.do');
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(17.0),
                                     border: Border.all(color: Colors.grey),
@@ -265,9 +277,11 @@ class _FarmPageState extends State<FarmPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Center(
-                                        child: Image.asset('images/korealogo.png',
+                                        child: Image.asset(
+                                            'images/korealogo.png',
                                             fit: BoxFit.cover,
-                                            color: Colors.black.withOpacity(0.3)),
+                                            color:
+                                                Colors.black.withOpacity(0.3)),
                                       ),
                                     )
                                   ],
@@ -300,7 +314,7 @@ Widget _buildInfoCard(String cardTitle, String info) {
                 color: Colors.green, style: BorderStyle.solid, width: 0.75),
           ),
           height: 100.0,
-          width: 100.0,
+          width: 120.0,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -315,7 +329,7 @@ Widget _buildInfoCard(String cardTitle, String info) {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0, bottom: 8.0),
+                  padding: const EdgeInsets.only(left: 10.0, bottom: 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
