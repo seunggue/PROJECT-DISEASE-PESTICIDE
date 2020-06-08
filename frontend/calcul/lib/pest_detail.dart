@@ -63,7 +63,11 @@ class ItemInfo extends StatelessWidget {
           Expanded(
           child: ListView(
             children: <Widget>[
-              
+              for (var pesti in pest.pestiDatas)
+                ListTile(
+                  title: Center(child: Text(pesti.pestiName, style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
+                  onTap: () => _showDialog(context, '${pesti.pestiName}을 준비하세요'),
+                )
             ]
           ),
           )],

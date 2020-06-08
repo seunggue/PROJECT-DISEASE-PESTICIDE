@@ -47,13 +47,16 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         var dom = parse(doc);
                         var cropPest = dom.getElementById('cropPest').innerHtml;
                         var arr = cropPest.split(',');
+                        print(arr);
                         var crop = arr[0];
                         var pest = arr[1];
-                        var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
-                        if (response.statusCode == 200){
-                          Pest pest = Pest.fromJson(json.decode(response.body));
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pest_Detail(pest)));
-                        }
+//                        var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
+//                        print(response.statusCode);
+//                        if (response.statusCode == 200){
+//                          Pest pest = Pest.fromJson(json.decode(response.body));
+//                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pest_Detail(pest)));
+//                        }
+//                        print("asdfasdf@@@@@@@@@@@@@@@@");
                       },
                       color: Colors.green,
                       icon: const Icon(Icons.assignment),

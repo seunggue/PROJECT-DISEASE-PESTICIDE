@@ -266,7 +266,7 @@ function success_getMapInfo( xml ) {
 			<div id="NPMS" style="width:${NpmsOpenAPIWidth}px;"> \
 					<div class="d-flex justify-content-between">\
 						<div>
-						<div id="cropPest" class="h1" align="center" style="font-weight: bold; vertical-align: middle;">감귤, 감귤궤양병</div>
+						<div id="cropPest" class="h1" align="center" style="font-weight: bold; vertical-align: middle;">감귤,감귤궤양병</div>
 						</div>
 						<img src="http://ncpms.rda.go.kr/images/api/fore/icon_help_api.gif" style="width:${NpmsOpenAPIWidth*0.2}px; height:${NpmsOpenAPIWidth*0.07}px; border:0px; margin:10px; right: 20px; cursor:pointer;" onclick="javascript:openHelp();" /> \
 					</div>\
@@ -430,7 +430,7 @@ function changeDbyhsMdlcode() {
 			pestName = kncrPestList[i].getDbyhsMdlNm();
 
 			npmsJ('#cropPest').html('');
-			npmsJ('#cropPest').html(`${cropName}의 ${pestName}`);
+			npmsJ('#cropPest').html(`${cropName},${pestName}`);
 
 			var pestConfigstr = kncrPestList[i].getPestConfigStr();
 			var pestConfigList = pestConfigstr.split("|");
