@@ -34,7 +34,7 @@ class _PesticidePageState extends State<PesticidePage> {
     setState(() {
       filteredCountries = countries
           .where((country) =>
-          country['pesti_name'].toLowerCase().contains(value.toLowerCase()))
+          country['pesti_name2'].toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -113,7 +113,7 @@ class _PesticidePageState extends State<PesticidePage> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 8),
                                   child: Text(
-                                    filteredCountries[index]['pesti_name'],
+                                    filteredCountries[index]['pesti_name2'],
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ),
