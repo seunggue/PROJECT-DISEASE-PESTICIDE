@@ -4,7 +4,7 @@ import 'package:food_app/constants.dart';
 
 AppBar homeAppBar(BuildContext context) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.green,
     elevation: 0,
     leading: IconButton(
       icon: SvgPicture.asset("assets/icons/menu.svg"),
@@ -18,11 +18,11 @@ AppBar homeAppBar(BuildContext context) {
             .copyWith(fontWeight: FontWeight.bold),
         children: [
           TextSpan(
-            text: "Punk",
+            text: "",
             style: TextStyle(color: ksecondaryColor),
           ),
           TextSpan(
-            text: "Food",
+            text: "",
             style: TextStyle(color: kPrimaryColor),
           ),
         ],

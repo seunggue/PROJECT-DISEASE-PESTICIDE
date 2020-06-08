@@ -15,7 +15,7 @@ class DiscountCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Offers & Discounts",
+            "오늘의 병해충 뉴스",
             style: TextStyle(fontWeight: FontWeight.bold, color: kTextColor),
           ),
           Container(
@@ -34,8 +34,8 @@ class DiscountCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFFFF961F).withOpacity(0.7),
-                    kPrimaryColor.withOpacity(0.7),
+                    Color(0xFFB5BFD0).withOpacity(0.7),
+                    Colors.blue.withOpacity(0.7),
                   ],
                 ),
               ),
@@ -44,7 +44,7 @@ class DiscountCard extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: SvgPicture.asset("assets/icons/macdonalds.svg"),
+                      child: SvgPicture.asset("assets/icons/.svg"),
                     ),
                     Expanded(
                       child: RichText(
@@ -52,7 +52,7 @@ class DiscountCard extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                           children: [
                             TextSpan(
-                              text: "Get Discount of \n",
+                              text: "병해충 발생 확률 \n",
                               style: TextStyle(fontSize: 16),
                             ),
                             TextSpan(
@@ -64,7 +64,7 @@ class DiscountCard extends StatelessWidget {
                             ),
                             TextSpan(
                               text:
-                                  "at MacDonald's on your first order & Instant cashback",
+                                  "Be careful as pests are more likely to occur",
                               style: TextStyle(fontSize: 10),
                             ),
                           ],

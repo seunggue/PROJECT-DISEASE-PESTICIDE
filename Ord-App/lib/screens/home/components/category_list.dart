@@ -14,20 +14,20 @@ class CategoryList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CategoryItem(
-            title: "Combo Meal",
+            title: "고추",
             isActive: true,
             press: () {},
           ),
           CategoryItem(
-            title: "Chicken",
+            title: "배",
             press: () {},
           ),
           CategoryItem(
-            title: "Beverages",
+            title: "사과",
             press: () {},
           ),
           CategoryItem(
-            title: "Snacks & Sides",
+            title: "벼",
             press: () {},
           ),
         ],

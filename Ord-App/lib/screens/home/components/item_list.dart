@@ -14,9 +14,9 @@ class ItemList extends StatelessWidget {
       child: Row(
         children: <Widget>[
           ItemCard(
-            svgSrc: "assets/icons/burger_beer.svg",
-            title: "Burger & Beer",
-            shopName: "MacDonald's",
+            svgSrc: "assets/icons/Following.svg",
+            title: "고추 병해충",
+            shopName: "SJ_Company",
             press: () {
               Navigator.push(
                 context,
@@ -29,15 +29,15 @@ class ItemList extends StatelessWidget {
             },
           ),
           ItemCard(
-            svgSrc: "assets/icons/chinese_noodles.svg",
-            title: "Chinese & Noodles",
-            shopName: "Wendys",
+            svgSrc: "assets/icons/Following.svg",
+            title: "사과 병해충",
+            shopName: "SJ_Company",
             press: () {},
           ),
           ItemCard(
-            svgSrc: "assets/icons/burger_beer.svg",
-            title: "Burger & Beer",
-            shopName: "MacDonald's",
+            svgSrc: "assets/icons/Following.svg",
+            title: "벼 병해충",
+            shopName: "SJ_Company",
             press: () {},
           )
         ],

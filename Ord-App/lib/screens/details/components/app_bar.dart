@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 AppBar detailsAppBar() {
   return AppBar(
     elevation: 0,
+    backgroundColor: Colors.green,
     leading: IconButton(
       icon: Icon(
         Icons.arrow_back,
