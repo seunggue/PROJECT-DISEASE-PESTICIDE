@@ -13,6 +13,8 @@ from lxml.html import parse
 from io import StringIO
 
 # Create your views here.
+
+
 def index(request):
 
     return render(request, 'index.html')
@@ -118,7 +120,7 @@ def map2(request):
 
 
 # 월간 병해충 정보 입력
-def newdata(request):
+def newdata():
     print('newdata@@@@')
     f = open('month_4.csv', 'r', encoding='CP949')
     rdr = csv.reader(f)
@@ -153,11 +155,11 @@ def newdata(request):
             nongsaro.sick_datas.add(nongsaro_sickdatas)
     f.close()
 
-    return render(request, 'index.html')
+    # return render(request, 'index.html')
 
 
 # 전체 DB용 데이터
-def newdata2(request):
+def newdata2():
     sick_apiurl = 'http://ncpms.rda.go.kr/npmsAPI/service'
     sick_apikey = '2020bc251a4e18ca0830201bff4ebe390037'
     # 복준자, 피망, 신선초, 양상추, 밀, 메밀, 들깨, 땅콩, 유채, 강활, 참취, 곤달비, 인삼, 논콩  <= 내용안나와서 삭제
@@ -402,4 +404,7 @@ def newdata2(request):
 
                 print(pesti_5)     
     
-    return render(request, 'index.html')
+    # return render(request, 'index.html')
+
+# newdata()
+# newdata2()
