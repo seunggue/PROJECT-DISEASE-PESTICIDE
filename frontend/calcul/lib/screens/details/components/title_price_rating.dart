@@ -57,7 +57,7 @@ class TitlePriceRating extends StatelessWidget {
         alignment: Alignment.topCenter,
         padding: EdgeInsets.symmetric(vertical: 15),
         height: 66,
-        width: 150,
+        width: 120,
         color: kPrimaryColor,
         child: Text(
           "농약 보러가기",
