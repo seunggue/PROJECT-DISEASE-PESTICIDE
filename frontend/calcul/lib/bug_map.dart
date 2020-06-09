@@ -18,7 +18,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
-  WebviewScaffold webview = WebviewScaffold(
+   WebviewScaffold webview = WebviewScaffold(
     url: ' http://k02c1021.p.ssafy.io/pages/map',
     geolocationEnabled: true,
 //    withZoom: true,
@@ -35,6 +35,12 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   var buttonText = "상세 정보";
   @override
   Widget build(BuildContext context) {
+//    flutterWebviewPlugin.onDestroy.listen((event) {
+//      print('webview destroyed!');
+//      if(Navigator.canPop(context)){
+//        Navigator.of(context).pop();
+//      }
+//    });
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -57,22 +63,27 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         var crop = arr[0];
                         var pest = arr[1];
                         var response = await http.get('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
-                        print('http://k02c1021.p.ssafy.io/pages/$crop/crop/$pest/sicksearch/');
                         if (response.statusCode == 200){
                           Pest pest = Pest.fromJson(json.decode(utf8.decode(response.bodyBytes)));
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => PestDetailScreen(pest)));
-                          flutterWebviewPlugin.close();
-                          print("asdffd");
+//                          Navigator.pushNamed(context,'/pest_detail', arguments: <String,Pest>{
+//                            'pest': pest
+//                          });
+                          flutterWebviewPlugin.hide();
                         }
                         else {
-                          print("sdf");
-                          buttonColor = Colors.red;
-                          buttonText = "정보 없음!";
-                          var _time = Timer(Duration(seconds: 2), ()=> (){{
-                            buttonColor = Colors.green;
-                            buttonText = "상세 정보";
-                          }
+//                          print("정보없음!");
+                          setState(() {
+                            buttonColor = Colors.red;
+                            buttonText = "정보 없음!";
                           });
+                          Future.delayed(Duration(seconds: 2), (){
+                            setState(() {
+                              buttonColor = Colors.green;
+                              buttonText = "상세 정보";
+                            });
+                          });
+
                         }
                       },
                       color: this.buttonColor,

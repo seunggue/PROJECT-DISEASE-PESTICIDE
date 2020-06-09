@@ -11,9 +11,22 @@ class PestDetailScreen extends StatelessWidget {
   PestDetailScreen(this.pest);
   @override
   Widget build(BuildContext context) {
+
+//    Map map = ModalRoute.of(context).settings.arguments as Map;
+//    Pest pest = map['pest'];
     return Scaffold(
       backgroundColor: Colors.green[100],
-      appBar: detailsAppBar(),
+      appBar: AppBar(
+        leading: BackButton(
+          color: Colors.white,
+          onPressed: (){
+//            Navigator.pop(context);
+            Navigator.pushNamed(context, '/bug_map');
+          },
+        ),
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+    ),
       resizeToAvoidBottomInset : false,
       body: Pest_Detail(pest),
       endDrawer: MyDrawer(),

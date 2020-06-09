@@ -1,6 +1,7 @@
 import 'package:calcul/CustomShapeClipper.dart';
 import 'package:calcul/bug_map.dart';
 import 'package:calcul/farm.dart';
+import 'package:calcul/pest-details-screen.dart';
 import 'package:calcul/pesticide_page.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -27,6 +28,8 @@ class ControlleApp extends StatelessWidget {
         '/bug_map': (context) => MapScreen(),
         '/pesticide_page': (context) => PesticidePage(),
         '/screens/home/home-screen': (context) => HomeScreen(),
+//        '/pest_detail': (context) => PestDetailScreen(),
+//        '/screens/pest/pest_detail': (context) => PestDetailScreen()
       },
     );
   }

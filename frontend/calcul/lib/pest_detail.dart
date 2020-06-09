@@ -57,20 +57,22 @@ class ItemInfo extends StatelessWidget {
             child: SingleChildScrollView(
               child: Text(
                 pest.preventMethod.replaceAll('<br/>', ''),
+
               ),
             ),
           ),
-          Expanded(
-          child: ListView(
-            children: <Widget>[
-              for (var pesti in pest.pestiDatas)
-                ListTile(
-                  title: Center(child: Text(pesti.pestiName, style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
-                  onTap: () => _showDialog(context, '${pesti.pestiName}을 준비하세요'),
-                )
-            ]
-          ),
-          )],
+          if (pest.pestiDatas.length >=1)    Expanded(
+            child: ListView(
+                children: <Widget>[
+                  for (var pesti in pest.pestiDatas)
+                    ListTile(
+                      title: Center(child: Text(pesti.pestiName, style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
+                      onTap: () => _showDialog(context, '${pesti.pestiName}을 준비하세요'),
+                    )
+                ]
+            ),
+          )
+       ],
       ),
     );
   }
