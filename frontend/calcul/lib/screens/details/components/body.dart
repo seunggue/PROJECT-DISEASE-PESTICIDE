@@ -58,17 +58,18 @@ class ItemInfo extends StatelessWidget {
           Expanded(
           child: ListView(
             children: <Widget>[
+              Container(decoration: BoxDecoration(color: Colors.lightGreen)),
               ListTile(
                 title: Center(child: Text('모스피란', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
-                onTap: () => _showDialog(context, '모스피란을 준비하세요'),
+                onTap: () => _showDialog(context, '모스피란'),
               ),
               ListTile(
               title: Center(child: Text('베노밀', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
-              onTap: () => _showDialog(context, '베노밀을 준비하세요'),
+              onTap: () => _showDialog(context, '베노밀'),
               ),
               ListTile(
                 title: Center(child: Text('에이팜', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.bold,))),
-                onTap: () => _showDialog(context, '에이팜을 준비하세요'),
+                onTap: () => _showDialog(context, '에이팜'),
               ),
             ],
           ),

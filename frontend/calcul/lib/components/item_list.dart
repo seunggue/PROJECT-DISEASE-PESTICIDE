@@ -15,8 +15,8 @@ class ItemList extends StatelessWidget {
         children: <Widget>[
           ItemCard(
             svgSrc: "assets/icons/Following.svg",
-            title: "고추 병해충",
-            shopName: "SJ_Company",
+            title: "탄저병",
+            shopName: "",
             press: () {
               Navigator.push(
                 context,
@@ -30,14 +30,32 @@ class ItemList extends StatelessWidget {
           ),
           ItemCard(
             svgSrc: "assets/icons/Following.svg",
-            title: "사과 병해충",
-            shopName: "SJ_Company",
+            title: "갈색무늬병",
+            shopName: "",
             press: () {},
           ),
           ItemCard(
             svgSrc: "assets/icons/Following.svg",
-            title: "벼 병해충",
-            shopName: "SJ_Company",
+            title: "겹무늬썩음병",
+            shopName: "",
+            press: () {},
+          ),
+          ItemCard(
+            svgSrc: "assets/icons/Following.svg",
+            title: "고두병",
+            shopName: "",
+            press: () {},
+          ),
+          ItemCard(
+            svgSrc: "assets/icons/Following.svg",
+            title: "고접병",
+            shopName: "",
+            press: () {},
+          ),
+          ItemCard(
+            svgSrc: "assets/icons/Following.svg",
+            title: "과수화상병",
+            shopName: "",
             press: () {},
           )
         ],

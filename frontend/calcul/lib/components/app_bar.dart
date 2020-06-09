@@ -4,7 +4,7 @@ import 'package:calcul/constants.dart';
 
 AppBar homeAppBar() {
   return AppBar(
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.lightGreen,
     elevation: 0.0,
   );
 }
