@@ -34,8 +34,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton.icon(
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Catalog()));
+                    // Navigator.of(context).push(
+                      //  MaterialPageRoute(builder: (context) => Catalog()));
                   },
                   color: Colors.green,
                   icon: const Icon(Icons.assignment),
