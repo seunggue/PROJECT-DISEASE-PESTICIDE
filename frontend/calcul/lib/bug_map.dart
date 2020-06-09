@@ -43,30 +43,6 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
 //    });
     return SafeArea(
         child: Scaffold(
-<<<<<<< HEAD
-      appBar: AppBar(
-        // appBar 밑에 탭이 붙기 누에 bottom에 TabBar 위젯을 추가해서 사용
-        title: Text('병해충 예측 지도'),
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RaisedButton.icon(
-                  onPressed: () {
-                    // Navigator.of(context).push(
-                      //  MaterialPageRoute(builder: (context) => Catalog()));
-                  },
-                  color: Colors.green,
-                  icon: const Icon(Icons.assignment),
-                  label: Text('상세 정보'))) //
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: webview,
-      ),
-      endDrawer: MyDrawer(),
-    ));
-=======
           appBar: AppBar(
             // appBar 밑에 탭이 붙기 누에 bottom에 TabBar 위젯을 추가해서 사용
             title: Text('병해충 예측 지도'),
@@ -121,6 +97,5 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           ),
           endDrawer: MyDrawer(),
         ));
->>>>>>> 5d3fb4fbfd1022c3f67b88ad4b5ac82b2e69c5ab
   }
 }
